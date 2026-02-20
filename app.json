@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Blink",
+    "slug": "blink-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a2a24"
+    },
+    "plugins": [
+      ["expo-notifications", {"icon": "./assets/icon.png", "color": "#3d7a65", "sounds": [], "defaultChannel": "blink-reminders"}],
+      ["expo-sensors", {"motionPermission": "Permitir que Blink detecte si el teléfono está boca abajo para pausar recordatorios."}],
+      ["expo-camera", {"cameraPermission": "Blink usa la camara para el registro de parpadeos (modo monitor)."}]
+    ],
+    "ios": {"supportsTablet": true},
+    "android": {
+      "adaptiveIcon": {"foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#1a2a24"},
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "Blink",
+      "shortName": "Blink",
+      "themeColor": "#1a2a24",
+      "backgroundColor": "#1a2a24",
+      "display": "standalone"
+    }
+  }
+}

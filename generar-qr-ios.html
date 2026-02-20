@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generar QR para iOS - Blink</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 520px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #1a2a24;
+      color: #fff;
+      border-radius: 12px;
+    }
+    h1 { font-size: 1.2rem; margin-bottom: 8px; }
+    h2 { font-size: 1rem; color: #3d7a65; margin: 24px 0 12px; }
+    p { color: #aaa; font-size: 0.9rem; margin-bottom: 12px; }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid #3d7a65;
+      background: #2a3a34;
+      color: #fff;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+    input::placeholder { color: #888; }
+    img {
+      display: block;
+      margin: 16px auto;
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+    }
+    .url {
+      word-break: break-all;
+      font-size: 0.8rem;
+      color: #3d7a65;
+      margin-top: 8px;
+      padding: 8px;
+      background: #2a3a34;
+      border-radius: 6px;
+    }
+    .hint { font-size: 0.8rem; color: #888; margin-top: 12px; }
+    .copy-btn {
+      background: #3d7a65;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    .copy-btn:hover { background: #4d8a75; }
+  </style>
+</head>
+<body>
+  <h1>📱 Compartir Blink en iOS</h1>
+  <p>Pega la URL que aparece en la terminal (la que empieza con <code>exp+blink-app://</code> o <code>exp://</code>):</p>
+  <input type="text" id="urlInput" placeholder="exp+blink-app://expo-development-client/?url=https%3A%2F%2Fxxxx.exp.direct">
+  <div id="result"></div>
+
+  <h2>🌐 Opción Web (más fácil)</h2>
+  <p>Si en la terminal ves algo como <code>omvo6q8-anonymous-8081.exp.direct</code>, la URL web sería:</p>
+  <input type="text" id="webInput" placeholder="omvo6q8-anonymous-8081.exp.direct">
+  <div id="webResult"></div>
+  <p class="hint">La persona abre <strong>https://[eso].exp.direct</strong> en Safari. La cámara del iPhone SÍ abre enlaces https, así que un QR funcionará.</p>
+</body>
+<script>
+  const urlInput = document.getElementById('urlInput');
+  const webInput = document.getElementById('webInput');
+  const result = document.getElementById('result');
+  const webResult = document.getElementById('webResult');
+
+  function updateResult() {
+    const url = urlInput.value.trim();
+    if (!url || (!url.startsWith('exp://') && !url.startsWith('exp+'))) return;
+    result.innerHTML = 
+      '<img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=' + 
+      encodeURIComponent(url) + '" alt="QR" width="260" height="260">' +
+      '<div class="url">' + url + '</div>' +
+      '<button class="copy-btn" id="copyExpBtn">Copiar enlace</button>' +
+      '<p class="hint">Envía este enlace por WhatsApp/iMessage. Al tocarlo se abre en Expo Go (debe estar instalada).</p>';
+    document.getElementById('copyExpBtn').onclick = function() {
+      navigator.clipboard.writeText(url);
+      this.textContent = '¡Copiado!';
+    };
+  }
+
+  function updateWebResult() {
+    const subdomain = webInput.value.trim().replace(/^https?:\/\//, '').split('/')[0];
+    if (!subdomain || !subdomain.includes('exp.direct')) return;
+    const webUrl = subdomain.startsWith('http') ? subdomain : 'https://' + subdomain;
+    webResult.innerHTML = 
+      '<img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=' + 
+      encodeURIComponent(webUrl) + '" alt="QR Web" width="260" height="260">' +
+      '<div class="url">' + webUrl + '</div>' +
+      '<button class="copy-btn" id="copyWebBtn">Copiar enlace</button>' +
+      '<p class="hint">✅ Escanear con la cámara del iPhone → se abre en Safari. No necesita Expo Go.</p>';
+    document.getElementById('copyWebBtn').onclick = function() {
+      navigator.clipboard.writeText(webUrl);
+      this.textContent = '¡Copiado!';
+    };
+  }
+
+  urlInput.addEventListener('input', updateResult);
+  urlInput.addEventListener('paste', () => setTimeout(updateResult, 10));
+  webInput.addEventListener('input', updateWebResult);
+  webInput.addEventListener('paste', () => setTimeout(updateWebResult, 10));
+</script>
+</html>
