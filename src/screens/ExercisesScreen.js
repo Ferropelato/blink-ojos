@@ -53,6 +53,7 @@ export default function ExercisesScreen() {
           </View>
         </View>
 
+        <Text style={[styles.sectionTitle, { color: colors.text }]}>{t.exercises.basicTitle}</Text>
         {EXERCISES.map((exercise) => {
           const title = exercise.title[locale] || exercise.title.es;
           const description = exercise.description[locale] || exercise.description.es;
@@ -97,7 +98,7 @@ export default function ExercisesScreen() {
           );
         })}
 
-        <View style={styles.yogaSection}>
+        <View style={[styles.yogaSection, { marginTop: 32 }]}>
           <Text style={[styles.yogaTitle, { color: colors.text }]}>{t.exercises.yogaTitle}</Text>
           <Text style={[styles.yogaSubtitle, { color: colors.textMuted }]}>{t.exercises.yogaSubtitle}</Text>
         </View>
@@ -180,8 +181,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
   },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 16,
+  },
   yogaSection: {
-    marginTop: 32,
     marginBottom: 16,
   },
   yogaTitle: {

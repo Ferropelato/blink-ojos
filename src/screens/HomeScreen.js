@@ -90,6 +90,7 @@ export default function HomeScreen() {
         visible={flashVisible}
         onComplete={onFlashComplete}
         flashOpacity={settings.flashOpacity}
+        theme={theme}
       />
 
       <ScrollView

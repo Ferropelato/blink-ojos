@@ -90,7 +90,11 @@ export const useSession = (settings, onBlink, { onSessionEnd, externalPause = fa
       const t = s.stimulusType || 'flash';
       if (t === 'flash' || t === 'both') onBlink?.();
       if ((t === 'vibration' || t === 'both') && Platform.OS !== 'web') {
-        Vibration.vibrate(30);
+        // Patrón más perceptible: Android [delay, vibrate, delay, vibrate], iOS usa duración fija
+        const pattern = Platform.OS === 'android' ? [0, 120, 80, 100] : 120;
+        try {
+          Vibration.vibrate(pattern);
+        } catch (_) {}
       }
       if (s.soundEnabled) playBlinkSound();
     } else if (Notifications) {

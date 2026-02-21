@@ -27,10 +27,12 @@ export const INACTIVITY_OPTIONS = [
 export const FLASH_DURATION_MS = 50;
 
 export const FLASH_OPACITY_OPTIONS = [
-  { value: 0.05, label: 'Muy sutil' },
+  { value: 0.04, label: 'Muy sutil' },
+  { value: 0.06, label: 'Sutil' },
   { value: 0.08, label: 'Normal' },
   { value: 0.12, label: 'Visible' },
-  { value: 0.15, label: 'Claro' },
+  { value: 0.18, label: 'Intenso' },
+  { value: 0.25, label: 'Muy intenso' },
 ];
 
 export const STIMULUS_TYPE_OPTIONS = [

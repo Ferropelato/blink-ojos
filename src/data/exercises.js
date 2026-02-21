@@ -5,7 +5,7 @@ export const YOGA_EXERCISES = [
   {
     id: 'y1',
     icon: 'palming',
-    title: { es: 'Palming', en: 'Palming' },
+    title: { es: 'Palming (relajación profunda)', en: 'Palming (deep relaxation)' },
     duration: { es: '2–3 minutos', en: '2–3 minutes' },
     description: {
       es: 'Cubrir los ojos con las palmas cálidas promueve relajación profunda y reduce la tensión ocular.',

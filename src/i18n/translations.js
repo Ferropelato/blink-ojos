@@ -5,7 +5,7 @@ export const translations = {
       subtitle: 'Cuida tus ojos',
       loading: 'Cargando...',
       footer: 'Con cada parpadeo ayudamos a prevenir el ojo seco, Blink te ayuda a eso.',
-      disclaimer: 'No reemplazan tratamiento médico, somos un complemento para mejor. No dejes de consultar con un oftalmólogo.',
+      disclaimer: 'No reemplaza el tratamiento médico. Es un complemento para tu bienestar visual. No dejes de consultar con tu oftalmólogo.',
     },
     session: {
       start: 'Iniciar sesión',
@@ -56,6 +56,7 @@ export const translations = {
     exercises: {
       title: 'Ejercicios oculares',
       subtitle: 'Técnicas sencillas para relajar la vista y prevenir la fatiga.',
+      basicTitle: 'Ejercicios básicos',
       distanceTip: 'Recomendación: mantén una distancia de 30–40 cm entre tus ojos y la pantalla (aprox. la longitud del antebrazo).',
       steps: 'Pasos',
       footer: 'Integra estos ejercicios en tu rutina con pantallas.',
@@ -80,7 +81,7 @@ export const translations = {
       subtitle: 'Take care of your eyes',
       loading: 'Loading...',
       footer: 'With each blink we help prevent dry eye, Blink helps you with that.',
-      disclaimer: 'Does not replace medical treatment, we are a complement for better care. Do not stop consulting with an ophthalmologist.',
+      disclaimer: 'Does not replace medical treatment. It is a complement for your visual wellbeing. Do not stop consulting with your ophthalmologist.',
     },
     session: {
       start: 'Start session',
@@ -131,6 +132,7 @@ export const translations = {
     exercises: {
       title: 'Eye exercises',
       subtitle: 'Simple techniques to relax your eyes and prevent fatigue.',
+      basicTitle: 'Basic exercises',
       distanceTip: 'Recommendation: keep a distance of 30–40 cm between your eyes and the screen (approx. forearm length).',
       steps: 'Steps',
       footer: 'Integrate these exercises into your screen routine.',
