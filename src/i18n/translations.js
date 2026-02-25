@@ -62,6 +62,8 @@ export const translations = {
       back: 'Volver',
       blinks: 'Parpadeos',
       remaining: 'Restante',
+      lightMode: 'Modo claro',
+      darkMode: 'Modo oscuro',
     },
     exercises: {
       title: 'Ejercicios oculares',
@@ -150,6 +152,8 @@ export const translations = {
       back: 'Back',
       blinks: 'Blinks',
       remaining: 'Remaining',
+      lightMode: 'Light mode',
+      darkMode: 'Dark mode',
     },
     exercises: {
       title: 'Eye exercises',

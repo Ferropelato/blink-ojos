@@ -33,10 +33,16 @@ export default function BlinkExerciseScreen() {
   const navigation = useNavigation();
   const { settings } = useSettings();
   const { refresh } = useStats();
-  const theme = settings?.theme || 'dark';
+  const settingsTheme = settings?.theme || 'dark';
+  const [themeOverride, setThemeOverride] = useState(null);
+  const theme = themeOverride ?? settingsTheme;
   const colors = getThemeColors(theme);
   const { t, locale } = useTranslation();
   const [flashVisible, setFlashVisible] = useState(false);
+
+  const toggleTheme = useCallback(() => {
+    setThemeOverride((prev) => (prev === 'light' ? 'dark' : 'light'));
+  }, []);
 
   const onBlink = useCallback(() => setFlashVisible(true), []);
   const onFlashComplete = useCallback(() => setFlashVisible(false), []);
@@ -81,13 +87,25 @@ export default function BlinkExerciseScreen() {
       <View style={[styles.bgLayer, { backgroundColor: bgColors[1] }]} />
       <View style={[styles.bgLayerBottom, { backgroundColor: bgColors[2] }]} />
 
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-      >
-        <Text style={[styles.backText, { color: colors.textMuted }]}>← {t.exerciseSession.back}</Text>
-      </TouchableOpacity>
+      <View style={styles.topBar}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+        >
+          <Text style={[styles.backText, { color: colors.textMuted }]}>← {t.exerciseSession.back}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.themeToggle, { backgroundColor: colors.cardBg }]}
+          onPress={toggleTheme}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+        >
+          <Text style={styles.themeIcon}>{theme === 'dark' ? '☀️' : '🌙'}</Text>
+          <Text style={[styles.themeLabel, { color: colors.textMuted }]}>
+            {theme === 'dark' ? t.exerciseSession.lightMode : t.exerciseSession.darkMode}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.content}>
         <Text style={[styles.title, { color: colors.text }]}>{t.exerciseSession.title}</Text>
@@ -156,12 +174,32 @@ const styles = StyleSheet.create({
     height: '50%',
     opacity: 0.4,
   },
-  backButton: {
+  topBar: {
     position: 'absolute',
     top: 48,
     left: 20,
+    right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     zIndex: 10,
+  },
+  backButton: {
     padding: 8,
+  },
+  themeToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+    gap: 6,
+  },
+  themeIcon: {
+    fontSize: 18,
+  },
+  themeLabel: {
+    fontSize: 13,
   },
   backText: {
     fontSize: 16,
