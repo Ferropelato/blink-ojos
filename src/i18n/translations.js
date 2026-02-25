@@ -35,7 +35,7 @@ export const translations = {
       tutorial: 'Ver tutorial de nuevo',
     },
     schedule: { title: 'Modo programado', days: 'Días', from: 'Desde', to: 'Hasta' },
-    quiet: { title: 'Horario silencioso', hint: 'No habrá recordatorios en este horario. Complementa el modo No molestar del sistema.', from: 'Inicio (ej. 22:00)', to: 'Fin (ej. 07:00)' },
+    quiet: { title: 'Horario silencioso', hint: 'No habrá recordatorios en este horario. Complementa el modo No molestar del sistema.', from: 'Inicio (ej. 22:00)', to: 'Fin (ej. 07:00)', activeNow: 'Activo ahora: no hay flash ni recordatorios.' },
     theme: { dark: 'Oscuro', light: 'Claro' },
     yesNo: { yes: 'Sí', no: 'No' },
     stats: {
@@ -124,7 +124,7 @@ export const translations = {
       tutorial: 'View tutorial again',
     },
     schedule: { title: 'Scheduled mode', days: 'Days', from: 'From', to: 'To' },
-    quiet: { title: 'Quiet hours', hint: 'No reminders during this time. Complements system Do Not Disturb.', from: 'Start (e.g. 22:00)', to: 'End (e.g. 07:00)' },
+    quiet: { title: 'Quiet hours', hint: 'No reminders during this time. Complements system Do Not Disturb.', from: 'Start (e.g. 22:00)', to: 'End (e.g. 07:00)', activeNow: 'Active now: no flash or reminders.' },
     theme: { dark: 'Dark', light: 'Light' },
     yesNo: { yes: 'Yes', no: 'No' },
     stats: {

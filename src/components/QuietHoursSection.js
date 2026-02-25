@@ -3,10 +3,12 @@ import { StyleSheet, Text, View, Switch } from 'react-native';
 import { PickerRow } from './PickerRow';
 import { HOUR_OPTIONS } from '../constants';
 import { useTheme } from '../context/ThemeContext';
+import { isQuietHours } from '../utils/schedule';
 
 export const QuietHoursSection = ({ settings, setSettings, recordInteraction, fontScale = 1, t }) => {
   const colors = useTheme();
-  const quiet = t?.quiet || { title: 'Horario silencioso', hint: 'No habrá recordatorios en este horario.', from: 'Inicio (ej. 22:00)', to: 'Fin (ej. 07:00)' };
+  const quiet = t?.quiet || { title: 'Horario silencioso', hint: 'No habrá recordatorios en este horario.', from: 'Inicio (ej. 22:00)', to: 'Fin (ej. 07:00)', activeNow: 'Activo ahora: no hay flash ni recordatorios.' };
+  const inQuietHours = settings.respectDnd && isQuietHours(settings.quietStart, settings.quietEnd);
   return (
   <View style={styles.section}>
     <View style={styles.switchRow}>
@@ -20,6 +22,7 @@ export const QuietHoursSection = ({ settings, setSettings, recordInteraction, fo
     </View>
     {settings.respectDnd && (
       <>
+        {inQuietHours && <Text style={[styles.activeNow, { color: colors.accent }]}>{quiet.activeNow}</Text>}
         <Text style={[styles.hint, { color: colors.textDim }]}>{quiet.hint}</Text>
         <PickerRow
           label={quiet.from}
@@ -66,5 +69,10 @@ const styles = StyleSheet.create({
     color: '#6b7a72',
     fontSize: 12,
     marginBottom: 8,
+  },
+  activeNow: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginBottom: 6,
   },
 });

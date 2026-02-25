@@ -50,6 +50,7 @@ export default function BlinkExerciseScreen() {
   );
 
   // Config específica para ejercicio: intervalo corto (4s), duración 2 min, solo flash
+  // respectDnd: false para que el gimnasio siempre flashee (sesión intencional)
   const exerciseSettings = {
     ...settings,
     interval: 4,
@@ -57,6 +58,7 @@ export default function BlinkExerciseScreen() {
     stimulusType: 'flash',
     inactivity: 0,
     proximityPause: false,
+    respectDnd: false,
   };
 
   const { active, remaining, blinkCount, start, stop } = useSession(
