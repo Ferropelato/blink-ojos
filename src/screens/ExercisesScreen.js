@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from '../i18n';
 import { useSettings } from '../context/SettingsContext';
 import { getThemeColors } from '../utils/theme';
@@ -24,6 +25,7 @@ const ICONS = {
 };
 
 export default function ExercisesScreen() {
+  const navigation = useNavigation();
   const { width } = useWindowDimensions();
   const isTablet = width >= 600;
   const { settings } = useSettings();
@@ -52,6 +54,19 @@ export default function ExercisesScreen() {
             </Text>
           </View>
         </View>
+
+        <TouchableOpacity
+          style={[styles.exerciseCta, { backgroundColor: colors.primary }]}
+          onPress={() => navigation.navigate('BlinkExercise')}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.exerciseCtaIcon}>👁️</Text>
+          <View style={styles.exerciseCtaText}>
+            <Text style={styles.exerciseCtaTitle}>{t.exercises.blinkExerciseCta}</Text>
+            <Text style={styles.exerciseCtaDesc}>{t.exercises.blinkExerciseCtaDesc}</Text>
+          </View>
+          <Text style={styles.exerciseCtaArrow}>→</Text>
+        </TouchableOpacity>
 
         <Text style={[styles.sectionTitle, { color: colors.text }]}>{t.exercises.basicTitle}</Text>
         {EXERCISES.map((exercise) => {
@@ -176,6 +191,36 @@ const styles = StyleSheet.create({
     marginTop: 12,
     padding: 12,
     borderRadius: 10,
+  },
+  exerciseCta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderRadius: 16,
+    marginBottom: 24,
+  },
+  exerciseCtaIcon: {
+    fontSize: 28,
+    marginRight: 14,
+  },
+  exerciseCtaText: {
+    flex: 1,
+  },
+  exerciseCtaTitle: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  exerciseCtaDesc: {
+    color: 'rgba(255,255,255,0.85)',
+    fontSize: 13,
+    marginTop: 4,
+    lineHeight: 18,
+  },
+  exerciseCtaArrow: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '600',
   },
   distanceTipText: {
     fontSize: 14,

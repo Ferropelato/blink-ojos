@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text } from 'react-native';
 import { useTranslation } from '../i18n';
 import { useSettings } from '../context/SettingsContext';
@@ -8,10 +9,21 @@ import { getThemeColors } from '../utils/theme';
 import HomeScreen from '../screens/HomeScreen';
 import VideosScreen from '../screens/VideosScreen';
 import ExercisesScreen from '../screens/ExercisesScreen';
+import BlinkExerciseScreen from '../screens/BlinkExerciseScreen';
 import BenefitsScreen from '../screens/BenefitsScreen';
 import BlinkMonitorScreen from '../screens/BlinkMonitorScreen';
 
 const Tab = createBottomTabNavigator();
+const ExercisesStack = createNativeStackNavigator();
+
+function ExercisesStackScreen() {
+  return (
+    <ExercisesStack.Navigator screenOptions={{ headerShown: false }}>
+      <ExercisesStack.Screen name="ExercisesList" component={ExercisesScreen} />
+      <ExercisesStack.Screen name="BlinkExercise" component={BlinkExerciseScreen} />
+    </ExercisesStack.Navigator>
+  );
+}
 
 export default function MainTabs() {
   const { t } = useTranslation();
@@ -50,7 +62,7 @@ export default function MainTabs() {
         />
         <Tab.Screen
           name="Exercises"
-          component={ExercisesScreen}
+          component={ExercisesStackScreen}
           options={{
             tabBarLabel: t.tabs.exercises,
             tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>🧘</Text>,

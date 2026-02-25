@@ -209,32 +209,6 @@ export const EXERCISES = [
   },
   {
     id: '3',
-    icon: 'palming',
-    title: { es: 'Palming (calor en los ojos)', en: 'Palming (warmth on eyes)' },
-    duration: { es: '2–3 minutos', en: '2–3 minutes' },
-    description: {
-      es: 'Cubrir los ojos con las palmas cálidas promueve relajación y reduce la tensión ocular. Ideal tras jornadas largas.',
-      en: 'Covering eyes with warm palms promotes relaxation and reduces eye tension. Ideal after long work sessions.',
-    },
-    steps: {
-      es: [
-        '1. Frota las palmas hasta calentarlas',
-        '2. Cierra los ojos',
-        '3. Coloca las palmas ahuecadas sobre los párpados',
-        '4. No presiones, solo deja el calor',
-        '5. Respira profundo 1–2 minutos',
-      ],
-      en: [
-        '1. Rub your palms until warm',
-        '2. Close your eyes',
-        '3. Place cupped palms over your eyelids',
-        '4. Do not press, just let the warmth',
-        '5. Breathe deeply for 1–2 minutes',
-      ],
-    },
-  },
-  {
-    id: '4',
     icon: 'figura8',
     title: { es: 'Figura 8 con la mirada', en: 'Figure 8 with gaze' },
     duration: { es: '1 minuto', en: '1 minute' },
@@ -260,7 +234,7 @@ export const EXERCISES = [
     },
   },
   {
-    id: '5',
+    id: '4',
     icon: 'enfocar',
     title: { es: 'Enfoque cercano y lejano', en: 'Near and far focus' },
     duration: { es: '1–2 minutos', en: '1–2 minutes' },
@@ -286,7 +260,7 @@ export const EXERCISES = [
     },
   },
   {
-    id: '6',
+    id: '5',
     icon: 'masaje',
     title: { es: 'Masaje suave de párpados', en: 'Gentle eyelid massage' },
     duration: { es: '30 segundos', en: '30 seconds' },
