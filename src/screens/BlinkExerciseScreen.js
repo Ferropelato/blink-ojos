@@ -33,16 +33,10 @@ export default function BlinkExerciseScreen() {
   const navigation = useNavigation();
   const { settings } = useSettings();
   const { refresh } = useStats();
-  const settingsTheme = settings?.theme || 'dark';
-  const [themeOverride, setThemeOverride] = useState(null);
-  const theme = themeOverride ?? settingsTheme;
+  const theme = settings?.theme || 'dark';
   const colors = getThemeColors(theme);
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   const [flashVisible, setFlashVisible] = useState(false);
-
-  const toggleTheme = useCallback(() => {
-    setThemeOverride((prev) => (prev === 'light' ? 'dark' : 'light'));
-  }, []);
 
   const onBlink = useCallback(() => setFlashVisible(true), []);
   const onFlashComplete = useCallback(() => setFlashVisible(false), []);
@@ -87,25 +81,13 @@ export default function BlinkExerciseScreen() {
       <View style={[styles.bgLayer, { backgroundColor: bgColors[1] }]} />
       <View style={[styles.bgLayerBottom, { backgroundColor: bgColors[2] }]} />
 
-      <View style={styles.topBar}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-        >
-          <Text style={[styles.backText, { color: colors.textMuted }]}>← {t.exerciseSession.back}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.themeToggle, { backgroundColor: colors.cardBg }]}
-          onPress={toggleTheme}
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-        >
-          <Text style={styles.themeIcon}>{theme === 'dark' ? '☀️' : '🌙'}</Text>
-          <Text style={[styles.themeLabel, { color: colors.textMuted }]}>
-            {theme === 'dark' ? t.exerciseSession.lightMode : t.exerciseSession.darkMode}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+      >
+        <Text style={[styles.backText, { color: colors.textMuted }]}>← {t.exerciseSession.back}</Text>
+      </TouchableOpacity>
 
       <View style={styles.content}>
         <Text style={[styles.title, { color: colors.text }]}>{t.exerciseSession.title}</Text>
@@ -149,6 +131,11 @@ export default function BlinkExerciseScreen() {
             </TouchableOpacity>
           </View>
         )}
+        <View style={[styles.themeHint, { backgroundColor: colors.cardBg }]}>
+          <Text style={[styles.themeHintText, { color: colors.textMuted }]}>
+            {t.exerciseSession.themeHint}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -174,32 +161,24 @@ const styles = StyleSheet.create({
     height: '50%',
     opacity: 0.4,
   },
-  topBar: {
+  backButton: {
     position: 'absolute',
     top: 48,
     left: 20,
-    right: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     zIndex: 10,
-  },
-  backButton: {
     padding: 8,
   },
-  themeToggle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+  themeHint: {
+    marginTop: 32,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     borderRadius: 10,
-    gap: 6,
+    alignSelf: 'stretch',
   },
-  themeIcon: {
-    fontSize: 18,
-  },
-  themeLabel: {
-    fontSize: 13,
+  themeHintText: {
+    fontSize: 12,
+    textAlign: 'center',
+    lineHeight: 18,
   },
   backText: {
     fontSize: 16,

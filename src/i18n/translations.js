@@ -62,8 +62,7 @@ export const translations = {
       back: 'Volver',
       blinks: 'Parpadeos',
       remaining: 'Restante',
-      lightMode: 'Modo claro',
-      darkMode: 'Modo oscuro',
+      themeHint: 'Ve a Inicio para cambiar tema claro/oscuro.',
     },
     exercises: {
       title: 'Ejercicios oculares',
@@ -152,8 +151,7 @@ export const translations = {
       back: 'Back',
       blinks: 'Blinks',
       remaining: 'Remaining',
-      lightMode: 'Light mode',
-      darkMode: 'Dark mode',
+      themeHint: 'Go to Home to change light/dark theme.',
     },
     exercises: {
       title: 'Eye exercises',
